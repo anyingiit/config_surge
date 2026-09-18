@@ -1,0 +1,42 @@
+# === Claude / Anthropic：Tailscale Oracle 出口（2026-09-16） ===
+# 核心后缀覆盖全部子域名：API、登录、Code、Cowork 下载、MCP、Artifacts。
+# Sources: https://code.claude.com/docs/en/network-config
+# https://claude.com/docs/third-party/claude-desktop/telemetry
+DOMAIN-SUFFIX,anthropic.com,tailscale
+DOMAIN-SUFFIX,claude.ai,tailscale
+DOMAIN-SUFFIX,claude.com,tailscale
+DOMAIN-SUFFIX,clau.de,tailscale
+DOMAIN-SUFFIX,claudemcpclient.com,tailscale
+DOMAIN-SUFFIX,claudemcpcontent.com,tailscale
+DOMAIN-SUFFIX,claudeusercontent.com,tailscale
+# 官方/规则源列出的专用站点与共享依赖；共享目标也会影响其他应用。
+DOMAIN,anthropic.auth0.com,tailscale
+DOMAIN,anthropic.com.cdn.cloudflare.net,tailscale
+DOMAIN,anthropic-com.ghost.io,tailscale
+DOMAIN,servd-anthropic-website.b-cdn.net,tailscale
+DOMAIN,anthropic.skilljar.com,tailscale
+DOMAIN,cdn.usefathom.com,tailscale
+DOMAIN,browser-intake-datadoghq.com,tailscale
+DOMAIN,browser-intake-us3-datadoghq.com,tailscale
+DOMAIN,browser-intake-us5-datadoghq.com,tailscale
+DOMAIN,browser-intake-ap1-datadoghq.com,tailscale
+DOMAIN,browser-intake-ap2-datadoghq.com,tailscale
+DOMAIN,browser-intake-datadoghq.eu,tailscale
+DOMAIN,browser-intake-ddog-gov.com,tailscale
+DOMAIN,http-intake.logs.us5.datadoghq.com,tailscale
+DOMAIN,cdnjs.cloudflare.com,tailscale
+DOMAIN,fonts.googleapis.com,tailscale
+DOMAIN,cdn.jsdelivr.net,tailscale
+DOMAIN,storage.googleapis.com,tailscale
+DOMAIN,formulae.brew.sh,tailscale
+DOMAIN-SUFFIX,sentry.io,tailscale
+# 保留上游增量覆盖；本地核心规则不依赖下载成功。
+RULE-SET,https://raw.githubusercontent.com/ConnersHua/RuleGo/master/Surge/Ruleset/Extra/GenAI/Anthropic.list,tailscale
+# 专属进程兜底覆盖第三方目标/IP连接；局域网与 SMTP 仍优先。
+PROCESS-NAME,Claude,tailscale
+PROCESS-NAME,claude,tailscale
+PROCESS-NAME,Claude Helper,tailscale
+PROCESS-NAME,Claude Helper (GPU),tailscale
+PROCESS-NAME,Claude Helper (Plugin),tailscale
+PROCESS-NAME,Claude Helper (Renderer),tailscale
+
